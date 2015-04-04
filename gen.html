@@ -25,9 +25,13 @@
 </head>
 <script language="JavaScript">
 $(document).ready(function() {
-  var clip = new ZeroClipboard($("#copy_button"), {
-      moviePath: "ZeroClipboard.swf"
-    });     
+  ZeroClipboard.config( { moviePath: 'js/ZeroClipboard.swf' } );
+var client = new ZeroClipboard( $("#copy_button") );
+client.on( 'load', function(client) {
+client.on( 'datarequested', function(client) {
+var text = $('#cite').html();
+client.setText(text);
+});  
 });
 </script>
 <body class="blue" style="height:100%">
