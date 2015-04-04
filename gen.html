@@ -43,7 +43,7 @@
           <label for="fname">Author's First Name</label>
         </div>
         <div class="input-field col s6">
-          <input style="text-transform: capitalize;" onblur="toUpper(this.value);" id="lname" type="text">
+          <input style="text-transform: capitalize;" id="lname" type="text">
           <label for="lname">Author's Last Name</label>
         </div>
       </div>
@@ -194,7 +194,6 @@ function blankFn() {
 </script>
 <script language="JavaScript">
 $(document).ready(function() {
-
   var clip = new ZeroClipboard($("#copy_button"), {
       moviePath: "ZeroClipboard.swf"
     });     
