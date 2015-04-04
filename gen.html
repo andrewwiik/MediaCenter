@@ -94,6 +94,14 @@
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal();
   });</script>
+<script language="JavaScript">
+$(document).ready(function() {
+  var clip = new ZeroClipboard($("#copy_button"), {
+      moviePath: "ZeroClipboard.swf"
+    });     
+});
+</script>
+
 <script>
 function isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
@@ -185,15 +193,6 @@ function toTitleCase(str)
 {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 };
-function blankFn() {
-};
-</script>
-<script language="JavaScript">
-$(document).ready(function() {
-  var clip = new ZeroClipboard($("#copy_button"), {
-      moviePath: "ZeroClipboard.swf"
-    });     
-});
 </script>
 </body>
 </html>
