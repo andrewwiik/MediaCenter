@@ -77,6 +77,7 @@
 </form>
       <button id="copy-button" data-clipboard-text="Copy Me!" title="Click to copy me.">Copy to Clipboard</button>
 <br />
+<button id="my-button" data-clipboard-text="Copy me!" title="Click to copy to clipboard.">Copy to Clipboard</button>
 <!--BEN GET FILEZILLA ASAP!-->
 <p id="ad"></p>
 <div id="citation" class="modal bottom-sheet">
@@ -91,8 +92,7 @@
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="ZeroClipboard.min.js"></script>
-<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.2.0/ZeroClipboard.js"></script>
 <script>
 function isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
@@ -101,12 +101,6 @@ function isNumberKey(evt){
     return true;
 }
 </script>
-<script>
-  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('.modal-trigger').leanModal();
-  });
-          </script>
 <script>
 function generateBookFootnote()
 {
@@ -193,5 +187,10 @@ function toTitleCase(str)
 function blankFn() {
 };
 </script>
+<script>
+  $(document).ready(function(){
+    var client = new ZeroClipboard( $("button#my-button") );
+  });
+          </script>
 </body>
 </html>
