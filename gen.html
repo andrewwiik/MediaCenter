@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="google-site-verification" content="FDqQarcGyG1jA2W3Us4LJT_6ED0xruTmCoYKuVrgC4U" />
+<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,100italic,400italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="container">
+<h1>Fill in the text boxes below and hit "Generate" in order to create a Chicago citation.</h1>
+<br />
+<form name="getInfo" action="blankFn()">
+  <button type="button" onclick="generateSampleFoot()">Generate Example Values for Footnote/Endnote</button>
+  <button type="button" onclick="generateSampleBib()">Generate Example Values for Bibliography</button>
+<br />
+
+<input type="text" value="Author first name"  id="fname"/><br />
+
+<input type="text" value="Author middle name (if none, leave blank)" id="mname"/><br />
+
+<input type="text" value="Author last name" id="lname"/><br />
+
+<input type="text" value="Title of book" id="booktitle"/><br />
+
+
+<input type="text" value="City of Publication" id="pubcity"/><br />
+
+<input type="text" value="Publisher" id="pub"/><br />
+
+<input type="text" value="Year of Publication" id="pubyear"/><br />
+<input type="text" value="Number of footnote" id="footnote"/>
+  <br />('Number of footnote' only applicable if you plan to generate a footnote/endnote citation.)<br />
+<input type="text" value="Page number you are referencing" id="pg"/>
+<br>
+  <button type="button" onclick="generateBookFootnote()">Generate Footnote/Endnote</button> <button type="button" onclick="generateBookBib()">Generate for Bibliography</button> <br />
+
+ 
+</form>
+<code id="cite"></code><br />
+<br />
+<!--BEN GET FILEZILLA ASAP!-->
+<p id="ad"></p>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/js/materialize.min.js"></script>
+<script>
+function generateBookFootnote()
+{
+//old code that is commented out
+//	var fname = document.getElementById('fname').value;
+//	var mname = document.getElementById('mname').value;
+//	var lname = document.getElementById('lname').value;
+//	var booktitle = document.getElementById('booktitle').value;
+//	var pubcity = document.getElementById('pubcity').value;
+//	var pubyear = document.getElementById('pubyear').value;
+//	var pub = document.getElementById('pub').value;
+	var fname = toTitleCase(document.getElementById('fname').value);
+	var mname = toTitleCase(document.getElementById('mname').value);
+	var lname = toTitleCase(document.getElementById('lname').value);
+	var booktitle = toTitleCase(document.getElementById('booktitle').value);
+	var pubcity = toTitleCase(document.getElementById('pubcity').value);
+	var pubyear = document.getElementById('pubyear').value;
+	var pub = toTitleCase(document.getElementById('pub').value);
+	var footnote = toTitleCase(document.getElementById('footnote').value);
+  var pg = document.getElementById('pg').value;
+	document.getElementById("ad").innerHTML="This displays in one line on this webpage. When you copy it into Microsoft Word (or similar), it should wrap itself.";
+
+
+	
+  document.getElementById("cite").innerHTML=footnote + '. ' + fname + ' ' + mname + ' ' + lname + ', ' + '<i>' + booktitle + '</i> (' + pubcity + ': ' + pub + ', ' + pubyear + '), ' + pg + '.';
+
+	
+//	document.getElementById("cite").innerHTML="Hello, World! This is the Footnote function.";
+
+// test to see if I can Javascript
+};
+
+function generateBookBib()
+{
+//	var fname = document.getElementById('fname').value;
+//	var mname = document.getElementById('mname').value;
+//	var lname = document.getElementById('lname').value;
+//	var booktitle = document.getElementById('booktitle').value;
+//	var pubcity = document.getElementById('pubcity').value;
+//	var pubyear = document.getElementById('pubyear').value;
+//	var pub = document.getElementById('pub').value;
+
+	var fname = toTitleCase(document.getElementById('fname').value);
+	var mname = toTitleCase(document.getElementById('mname').value);
+	var lname = toTitleCase(document.getElementById('lname').value);
+	var booktitle = toTitleCase(document.getElementById('booktitle').value);
+	var pubcity = toTitleCase(document.getElementById('pubcity').value);
+	var pubyear = document.getElementById('pubyear').value;
+	var pub = toTitleCase(document.getElementById('pub').value);
+  document.getElementById("ad").innerHTML="This one is slightly more complex. Paste it into Microsoft Word, and where the line breaks, make a new line there and indent. You want it to look like this: http://i.imgur.com/USp3Q.png";
+	
+	
+	
+//	alert(fnamecap);
+	
+  document.getElementById("cite").innerHTML="";
+
+
+};
+function generateSampleFoot() {
+	document.getInfo.fname.value = 'joe';
+	document.getInfo.mname.value = '';
+	document.getInfo.lname.value = 'roberts';
+	document.getInfo.booktitle.value = 'Joe Roberts: A Biography';
+	document.getInfo.pubcity.value = 'los angeles';
+	document.getInfo.pub.value = 'Penguin Books';
+	document.getInfo.pubyear.value = '2015';
+	document.getInfo.footnote.value = '3';
+  document.getInfo.pg.value = '137';
+	document.getElementById("ad").innerHTML="This demonstrates someone with no middle name for citing in footnote/endnote, not a bibliography (because of the value in 'Number of Footnote').";
+//  generateBookFootnote();
+	
+};
+function generateSampleBib() {
+	document.getInfo.fname.value = 'joe';
+	document.getInfo.mname.value = '';
+	document.getInfo.lname.value = 'roberts';
+	document.getInfo.booktitle.value = 'Joe Roberts: A Biography';
+	document.getInfo.pubcity.value = 'los angeles';
+	document.getInfo.pub.value = 'Penguin Books';
+	document.getInfo.pubyear.value = '2015';
+	document.getInfo.footnote.value = '';
+  document.getInfo.pg.value = '137';
+	document.getElementById("ad").innerHTML="This demonstrates someone with no middle name for citing in a bibliography, not a footnote (because of the blank in 'Number of Footnote').";
+//  generateBookBib();
+	
+};
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
+function blankFn() {
+};
+</script>
+</body>
+</html>
