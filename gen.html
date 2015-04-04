@@ -1,5 +1,5 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html style="height:100%">
 <head>
 <meta charset="UTF-8">
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
@@ -8,45 +8,105 @@
 <meta name="google-site-verification" content="FDqQarcGyG1jA2W3Us4LJT_6ED0xruTmCoYKuVrgC4U" />
 <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,300italic,100italic,400italic' rel='stylesheet' type='text/css'>
+<style>
+.banner {
+  left: -1rem;
+  width: 110%;
+  background: #39A5F7;
+  overflow: hidden;
+  box-shadow: 0 0.3rem 0.2rem rgba(0, 0, 0, 0.3);
+  -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.59, 0.04, 0.3, 1.43);
+          transition: transform 0.5s cubic-bezier(0.59, 0.04, 0.3, 1.43);
+          margin: 0px -3rem;
+}
+</style>
 </head>
-<body>
-<div class="container">
-<h1>Fill in the text boxes below and hit "Generate" in order to create a Chicago citation.</h1>
-<br />
-<form name="getInfo" action="blankFn()">
-  <button type="button" onclick="generateSampleFoot()">Generate Example Values for Footnote/Endnote</button>
-  <button type="button" onclick="generateSampleBib()">Generate Example Values for Bibliography</button>
-<br />
-
-<input type="text" value="Author first name"  id="fname"/><br />
-
-<input type="text" value="Author middle name (if none, leave blank)" id="mname"/><br />
-
-<input type="text" value="Author last name" id="lname"/><br />
-
-<input type="text" value="Title of book" id="booktitle"/><br />
-
-
-<input type="text" value="City of Publication" id="pubcity"/><br />
-
-<input type="text" value="Publisher" id="pub"/><br />
-
-<input type="text" value="Year of Publication" id="pubyear"/><br />
-<input type="text" value="Number of footnote" id="footnote"/>
-  <br />('Number of footnote' only applicable if you plan to generate a footnote/endnote citation.)<br />
-<input type="text" value="Page number you are referencing" id="pg"/>
+<body class="blue" style="height:100%">
+<div class="valign-wrapper" style="width:100%; height:100%;">
+<div class="container white z-depth-3">
+<div class="banner">
+<h1 class="center-align white-text">MLA Citation Generator</h1>
+</div>
 <br>
-  <button type="button" onclick="generateBookFootnote()">Generate Footnote/Endnote</button> <button type="button" onclick="generateBookBib()">Generate for Bibliography</button> <br />
-
- 
+<form name="getInfo" action="blankFn()">
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="booktitle" type="text">
+          <label for="booktitle">Title of the Book</label>
+        </div>
+      </div>
+<div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input style="text-transform: capitalize;" id="fname" type="text">
+          <label for="fname">Author's First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input style="text-transform: capitalize;" onblur="toUpper(this.value);" id="lname" type="text">
+          <label for="lname">Author's Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input style="text-transform: capitalize;" id="pubcity" type="text">
+          <label for="pubcity">City of Publication</label>
+        </div>
+        <div class="input-field col s6">
+          <input style="text-transform: capitalize;" id="pub" type="text">
+          <label for="pub">Publisher of the Book</label>
+        </div>
+      </div>
+      <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input maxlength="4" id="pubyear" type="text" onkeypress="return isNumberKey(event)">
+          <label for="pubyear">Year of Publication</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="medium" type="text">
+          <label for="medium">The Medium of the Source</label>
+        </div>
+      </div>
+      <div class="row">
+  <button style="width:100%;" data-target="citation" type="button" class="btn modal-trigger" onclick="generateBookFootnote()">Generate MLA 7 Citation</button></div></div>
+  <a class="waves-effect waves-light btn modal-trigger" href="#citation">Modal</a>
 </form>
-<code id="cite"></code><br />
+      <button id="copy-button" data-clipboard-text="Copy Me!" title="Click to copy me.">Copy to Clipboard</button>
 <br />
 <!--BEN GET FILEZILLA ASAP!-->
 <p id="ad"></p>
+<div id="citation" class="modal bottom-sheet">
+    <div class="modal-content">
+      <h4>Your Citation</h4>
+      <p id ="cite"></p>
+          </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+  </div>
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="/js/materialize.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="ZeroClipboard.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script>
+function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    return true;
+}
+</script>
+<script>
+  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+          </script>
 <script>
 function generateBookFootnote()
 {
@@ -59,24 +119,16 @@ function generateBookFootnote()
 //	var pubyear = document.getElementById('pubyear').value;
 //	var pub = document.getElementById('pub').value;
 	var fname = toTitleCase(document.getElementById('fname').value);
-	var mname = toTitleCase(document.getElementById('mname').value);
 	var lname = toTitleCase(document.getElementById('lname').value);
 	var booktitle = toTitleCase(document.getElementById('booktitle').value);
 	var pubcity = toTitleCase(document.getElementById('pubcity').value);
 	var pubyear = document.getElementById('pubyear').value;
 	var pub = toTitleCase(document.getElementById('pub').value);
-	var footnote = toTitleCase(document.getElementById('footnote').value);
-  var pg = document.getElementById('pg').value;
-	document.getElementById("ad").innerHTML="This displays in one line on this webpage. When you copy it into Microsoft Word (or similar), it should wrap itself.";
+	var medium = toTitleCase(document.getElementById('medium').value);
 
 
 	
-  document.getElementById("cite").innerHTML=footnote + '. ' + fname + ' ' + mname + ' ' + lname + ', ' + '<i>' + booktitle + '</i> (' + pubcity + ': ' + pub + ', ' + pubyear + '), ' + pg + '.';
-
-	
-//	document.getElementById("cite").innerHTML="Hello, World! This is the Footnote function.";
-
-// test to see if I can Javascript
+  document.getElementById("cite").innerHTML=lname + ', ' + fname + '. ' + '<i>' + booktitle + '</i>. ' + pubcity + ': ' + pub + ', ' + pubyear + '. ' + medium + '.';
 };
 
 function generateBookBib()
