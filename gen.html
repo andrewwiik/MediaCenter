@@ -82,18 +82,15 @@ $(document).ready(function() {
       </div>
       <div class="row">
   <button style="width:100%;" data-target="citation" type="button" class="btn modal-trigger" onclick="generateBookFootnote()">Generate MLA 7 Citation</button></div></div>
-  <a class="waves-effect waves-light btn modal-trigger" href="#citation">Modal</a>
 </form>
 <br>
 <div id="citation" class="modal bottom-sheet">
     <div class="modal-content">
       <h4>Your Citation</h4>
       <p id ="cite"></p>
-      <p id='to_copy'>12345645324324</p>
-<button id='copy_button' data-clipboard-target='cite'><b>Copy To Clipboard</b></button>
           </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+      <button class="btn waves" id='copy_button' data-clipboard-target='cite'><b>Copy Citation</b></button>
     </div>
   </div>
 </div>
