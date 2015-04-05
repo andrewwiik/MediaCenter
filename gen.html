@@ -56,60 +56,64 @@ clip.on( 'mouseup', function(client) {
 <div class="valign-wrapper" style="width:100%; height:100%;">
 <div class="container white z-depth-3">
 <div class="banner">
-<h1 class="center-align white-text">MLA Citation Generator</h1>
+<h3 class="center-align white-text">MLA Citation Generator</h3>
 </div>
 <br>
 <form name="getInfo">
       <div class="row">
         <div class="input-field col s12">
-          <input id="booktitle" type="text">
+          <input id="booktitle" type="text" class="validate">
           <label for="booktitle">Title of the Book</label>
         </div>
       </div>
-<div class="row">
+<div class="row" style="margin-bottom: 0px">
     <div class="col s12">
       <div class="row">
         <div class="input-field col s6">
-          <input style="text-transform: capitalize;" id="fname" type="text">
+          <input class="validate" style="text-transform: capitalize;" id="fname" type="text">
           <label for="fname">Author's First Name</label>
         </div>
         <div class="input-field col s6">
-          <input style="text-transform: capitalize;" id="lname" type="text">
+          <input class="validate" style="text-transform: capitalize;" id="lname" type="text">
           <label for="lname">Author's Last Name</label>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="margin-bottom: 0px">
     <div class="col s12">
-      <div class="row">
+      <div class="row" >
         <div class="input-field col s6">
-          <input style="text-transform: capitalize;" id="pubcity" type="text">
+          <input class="validate" style="text-transform: capitalize;" id="pubcity" type="text">
           <label for="pubcity">City of Publication</label>
         </div>
         <div class="input-field col s6">
-          <input style="text-transform: capitalize;" id="pub" type="text">
+          <input class="validate" style="text-transform: capitalize;" id="pub" type="text">
           <label for="pub">Publisher of the Book</label>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="margin-bottom: 0px">
     <div class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-          <input maxlength="4" id="pubyear" type="text" onkeypress="return isNumberKey(event)">
+      <div class="row" style="margin-bottom: 0px">
+        <div class="input-field col s4">
+          <input maxlength="4" class="validate" id="pubyear" type="text" max="2015" onkeypress="return isNumberKey(event)" required>
           <label for="pubyear">Year of Publication</label>
         </div>
-        <div class="input-field col s6">
-          <input id="medium" type="text">
+        <div class="input-field col s4">
+          <input class="validate" id="pg" type="text">
+          <label for="pg">Page Number (optional)</label>
+        </div>
+        <div class="input-field col s4">
+          <input class="validate" value=" Print" id="medium" type="text">
           <label for="medium">The Medium of the Source</label>
         </div>
       </div>
-      <div class="row">
-  <button style="width:100%;" data-target="citation" type="button" class="btn modal-trigger" onclick="generateBookFootnote()">Generate MLA 7 Citation</button></div></div>
+      <div class="row" style="margin-bottom: 0px">
+  <button style="width:110%; left: 0px;" data-target="citation" type="submit" class="banner btn waves-effect waves-light modal-trigger" onclick="generateFullBookCitation()">Generate Citation</button></div></div>
 </form>
-<br>
 <div id="citation" class="modal bottom-sheet">
     <div class="modal-content">
-      <h4>Your Citation</h4>
-      <p id ="cite"></p>
+      <h4 class="center-align">Your Generated Citation</h4>
+      <p><b>Full Citation: </b><span id="Fullcite"></span></p>
+      <p><b>In-Text Citation: </b><span id="inTextCite"></span></p>
           </div>
     <div class="modal-footer">
     </div>
@@ -130,7 +134,7 @@ function isNumberKey(evt){
 }
 </script>
 <script>
-function generateBookFootnote()
+function generateFullBookCitation()
 {
 //old code that is commented out
 //	var fname = document.getElementById('fname').value;
@@ -147,12 +151,13 @@ function generateBookFootnote()
 	var pubyear = document.getElementById('pubyear').value;
 	var pub = toTitleCase(document.getElementById('pub').value);
 	var medium = toTitleCase(document.getElementById('medium').value);
+	var pg = toTitleCase(document.getElementById('pg').value);
 
 
 	
-  document.getElementById("cite").innerHTML=lname + ', ' + fname + '. ' + '<span style="font-style: italic;">' + booktitle + '</span>. ' + pubcity + ': ' + pub + ', ' + pubyear + '. ' + medium + '.';
+  document.getElementById("Fullcite").innerHTML=lname + ', ' + fname + '. ' + '<span style="font-style: italic;">' + booktitle + '</span>. ' + pubcity + ': ' + pub + ', ' + pubyear + '. ' + medium + '.';
+      document.getElementById("inTextCite").innerHTML= '(' + lname + ' ' + pg + ')';
 };
-
 function generateBookBib()
 {
 //	var fname = document.getElementById('fname').value;
